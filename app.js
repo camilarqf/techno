@@ -3,6 +3,7 @@ const vm = new Vue({
   data: {
     mensagem: "Uma mensagem",
     produtos: [],
+    produto: false,
   },
 
   methods: {
@@ -11,6 +12,14 @@ const vm = new Vue({
         .then((r) => r.json())
         .then((r) => {
           this.produtos = r;
+        });
+    },
+
+    fetchProduto(id) {
+      fetch(`./api/produtos/${id}/dados.json`)
+        .then((r) => r.json())
+        .then((r) => {
+          this.produto = r;
         });
     },
   },
